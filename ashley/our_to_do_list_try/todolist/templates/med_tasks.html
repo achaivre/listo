@@ -1,24 +1,14 @@
 {% extends 'base.html' %}{% block content %}
 
-<a href="{% url "all_tasks" %}">All Tasks</a>
-
 <h1>Hello {{request.user}}</h1>
 <h3>You have {{count}} incomplete tasks.</h3>
 
-{% if request.user.is_authenticated %}
-<a href="{% url "logout" %}">Logout</a> {% else %}
-<a href="{% url 'login' %}">Login</a>
-{% endif %}
-
 {% if count is 0 %}
 <a href="{% url 'create_task' %}">Create a Task</a>
-{% else %}
-{% for task in med_tasks %}
-<ul><li>{{task}}</li></ul>
+{% else %} {% for task in med_tasks %}
+<ul>
+  <li>{{task}}</li>
+</ul>
 <a href="{% url 'update_task' task.id %}">Edit</a>
 <a href="{% url 'delete_task' task.id %}">Delete</a>
-{% endfor %}
-{% endif %}
-
-
-{% endblock content %}
+{% endfor %} {% endif %} {% endblock content %}
