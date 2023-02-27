@@ -1,13 +1,17 @@
 {% extends 'base.html' %}{% block content %}
+<div class="all">
+  <h1>Hello <span class="user">{{request.user}}</span></h1>
+  <h3>You have <span class="count">{{count}}</span> completed tasks.</h3>
 
-<h1>Hello {{request.user}}</h1>
-<h3>You have {{count}} completed tasks.</h3>
+  {% if count is 0 %}
+  <button class="button">
+    <a href="{% url 'create_task' %}">Create a Task</a>
+  </button>
 
-{% if count is 0 %}
-<button><a href="{% url 'create_task' %}">Create a Task</a></button>
-
-{% else %} {% for task in finished_tasks %}
-<ul>
-  <li>{{task}}</li>
-</ul>
-{% endfor %} {% endif %} {% endblock content %}
+  {% else %} {% for task in finished_tasks %}
+  <ul>
+    <li>{{task}}</li>
+  </ul>
+  {% endfor %} {% endif %}
+</div>
+{% endblock content %}

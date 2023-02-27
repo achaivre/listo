@@ -1,23 +1,28 @@
 {% extends 'base.html' %}{% block content %}
 
-<h1>Hello {{request.user}}</h1>
-<h3>You have {{count}} incomplete tasks.</h3>
+<div class="all">
+  <h1>Hello <span class="user">{{request.user}}</span></h1>
+  <h3>You have <span class="count">{{count}}</span> incomplete tasks.</h3>
 
-{% if count is 0 %}
-<button><a href="{% url 'create_task' %}">Create a Task</a></button>
+  {% if count is 0 %}
+  <button><a href="{% url 'create_task' %}">Create a Task</a></button>
 
-{% else %} {% for task in tasks %}
-<p>{{task}}</p>
-<button><a href="{% url 'update_task' task.id %}">Edit</a></button>
-<button><a href="{% url 'delete_task' task.id %}">Delete</a></button>
+  {% else %} {% for task in tasks %}
+  <p>
+    {{task}}
 
-{% endfor %} {% endif %} {% comment %}
-<button><a href="{% url 'low_tasks' %}">View Low Tasks</a></button>
-<button><a href="{% url 'medium_tasks' %}">View Medium Tasks</a></button>
-<button><a href="{% url 'high_tasks' %}">View High Tasks</a></button>
-<button><a href="{% url 'completed_tasks' %}">View Completed Tasks</a></button>
-{% endcomment %}
+    <a href="{% url 'update_task' task.id %}"
+      ><i class="fa fa-keyboard"></i>Edit</a
+    >
+    /
+    <a href="{% url 'delete_task' task.id %}"><i class="fa fa-trash"></i></a>
+  </p>
 
-<button><a href="{% url 'create_task' %}">Create a Task</a></button>
+  {% endfor %}
+  <br /><button class="button">
+    <a href="{% url 'create_task' %}">Create a Task</a>
+  </button>
+  {% endif %}
+</div>
 
 {% endblock content %}
