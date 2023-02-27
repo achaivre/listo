@@ -5,7 +5,9 @@
   <h3>You have <span class="count">{{count}}</span> incomplete tasks.</h3>
 
   {% if count is 0 %}
-  <button><a href="{% url 'create_task' %}">Create a Task</a></button>
+  <button class="button">
+    <a href="{% url 'create_task' %}">Create a Task</a>
+  </button>
 
   {% else %} {% for task in tasks %}
   <p>
