@@ -1,1 +1,32 @@
-* {background-color: #c47196;}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ac1010;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .todolist {
+    margin: 50px auto;
+    max-width: 500px;
+    border: 2px solid #333;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 5px 5px 5px #ccc;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin: 10px 0;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  

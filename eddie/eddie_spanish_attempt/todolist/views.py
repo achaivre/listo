@@ -17,7 +17,7 @@ from django.contrib.auth import login
 
 
 class LoginView_ToDo(LoginView):
-    template_name = "login.html"
+    template_name = "english/login.html"
     fields = "__all__"
     redirect_authenticated_user = True
 
@@ -142,3 +142,6 @@ class TaskCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(TaskCreate, self).form_valid(form)
+
+
+# spanish version views

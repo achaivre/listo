@@ -1,0 +1,24 @@
+{% extends 'base.html' %}{% block content %}
+
+<a href="{% url "all_tasks" %}">Todas las Tareas</a>
+
+<h1>Hello {{request.user}}</h1>
+<h3>You have {{count}} Tareas Incompletas.</h3>
+
+{% if request.user.is_authenticated %}
+<a href="{% url "logout" %}">Cerrar sesion</a> {% else %}
+<a href="{% url 'login' %}">Cerrar sesion</a>
+{% endif %}
+
+{% if count is 0 %}
+<a href="{% url 'create_task' %}">Crear una tarea</a>
+{% else %}
+{% for task in low_tasks %}
+<ul><li>{{task}}</li></ul>
+<a href="{% url 'update_task' task.id %}">Editar</a>
+<a href="{% url 'delete_task' task.id %}">Borrar Tarea</a>
+{% endfor %}
+{% endif %}
+
+
+{% endblock content %}
