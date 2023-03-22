@@ -11,9 +11,7 @@
   <ul>
     <li>
       {{task}}
-      <a href="{% url 'update_task' task.id %}"
-        ><i class="fa fa-keyboard"></i>Edit</a
-      >
+      <a href="{% url 'update_task' task.id %}"><i class="fa fa-pencil"></i></a>
       /
       <a href="{% url 'delete_task' task.id %}"><i class="fa fa-trash"></i></a>
     </li>
