@@ -1,0 +1,18 @@
+{% extends 'base.html' %}{% block content %}
+
+<h1>Hello {{request.user}}</h1>
+
+{% if request.user.is_authenticated %}
+<a href="{% url "logout" %}">Logout</a> {% else %}
+<a href="{% url 'login' %}">Login</a>
+{% endif %}
+
+{% for list in lists %}
+<a href="{% url 'all_tasks' list.id %}"><p>{{list}}</p></a>
+<a href="{% url 'update_list' list.id %}">Edit</a>
+<a href="{% url 'delete_list' list.id %}">Delete</a>
+{% endfor %}
+
+
+<a href="{% url 'create_list' %}">Create a List</a>
+{% endblock content %}

@@ -3,8 +3,8 @@ from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 
-from .models import Task
-from .forms import TaskForm
+from .models import Task, List
+from .forms import TaskForm, ListForm
 
 # Login Imports
 
@@ -22,14 +22,14 @@ class LoginView_ToDo(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy("all_tasks")
+        return reverse_lazy("home")
 
 
 class CreateUserPage(FormView):
     template_name = "register.html"
     form_class = UserCreationForm
     redirect_authenticated_user = True
-    success_url = reverse_lazy("all_tasks")
+    success_url = reverse_lazy("home")
 
     def form_valid(self, form):
         user = form.save()
@@ -39,8 +39,49 @@ class CreateUserPage(FormView):
 
     def get(self, *args, **kwargs):
         if self.request.user.is_authenticated:
-            return redirect("all_tasks")
+            return redirect("home")
         return super(CreateUserPage, self).get(*args, **kwargs)
+
+
+# List Views
+class AllLists(LoginRequiredMixin, ListView):
+    model = List
+    context_object_name = "lists"
+    template_name = "index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["lists"] = context["lists"].filter(user=self.request.user)
+        return context
+
+
+class ListUpdate(LoginRequiredMixin, UpdateView):
+    model = List
+    template_name = "list_form.html"
+    fields = ["name", "category"]
+    success_url = reverse_lazy("home")
+
+
+class ListDelete(LoginRequiredMixin, DeleteView):
+    model = List
+    template_name = "list_form.html"
+    context_object_name = "list"
+    success_url = reverse_lazy("home")
+
+    def get_queryset(self):
+        owner = self.request.user
+        return self.model.objects.filter(user=owner)
+
+
+class ListCreate(LoginRequiredMixin, CreateView):
+    model = List
+    form_class = ListForm
+    template_name = "list_form.html"
+    success_url = reverse_lazy("home")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(ListCreate, self).form_valid(form)
 
 
 # Task Categories Views
@@ -53,7 +94,9 @@ class AllTasks(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["tasks"] = context["tasks"].filter(user=self.request.user)
+        context["tasks"] = context["tasks"].filter(
+            user=self.request.user, task_list=List.objects.get(id=self.kwargs["pk"])
+        )
         context["count"] = context["tasks"].filter(is_complete=False).count()
         return context
 
@@ -66,7 +109,9 @@ class HighPriority(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["high_tasks"] = context["high_tasks"].filter(
-            user=self.request.user, priority="high"
+            user=self.request.user,
+            priority="high",
+            task_list=List.objects.get(id=self.kwargs["pk"]),
         )
         context["count"] = context["high_tasks"].filter(is_complete=False).count()
         return context
@@ -80,7 +125,9 @@ class MediumPriority(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["med_tasks"] = context["med_tasks"].filter(
-            user=self.request.user, priority="medium"
+            user=self.request.user,
+            priority="medium",
+            task_list=List.objects.get(id=self.kwargs["pk"]),
         )
         context["count"] = context["med_tasks"].filter(is_complete=False).count()
         return context
@@ -94,7 +141,9 @@ class LowPriority(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["low_tasks"] = context["low_tasks"].filter(
-            user=self.request.user, priority="low"
+            user=self.request.user,
+            priority="low",
+            task_list=List.objects.get(id=self.kwargs["pk"]),
         )
         context["count"] = context["low_tasks"].filter(is_complete=False).count()
         return context
@@ -108,7 +157,9 @@ class Completed_View(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["finished_tasks"] = context["finished_tasks"].filter(
-            user=self.request.user, is_complete=True
+            user=self.request.user,
+            is_complete=True,
+            task_list=List.objects.get(id=self.kwargs["pk"]),
         )
         context["count"] = context["finished_tasks"].filter(is_complete=True).count()
         return context
