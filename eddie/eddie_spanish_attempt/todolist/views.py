@@ -26,7 +26,7 @@ class LoginView_ToDo(LoginView):
 
 
 class CreateUserPage(FormView):
-    template_name = "register.html"
+    template_name = "english/register.html"
     form_class = UserCreationForm
     redirect_authenticated_user = True
     success_url = reverse_lazy("all_tasks")
@@ -49,7 +49,7 @@ class CreateUserPage(FormView):
 class AllTasks(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = "tasks"
-    template_name = "all_tasks.html"
+    template_name = "english/all_tasks.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -61,7 +61,7 @@ class AllTasks(LoginRequiredMixin, ListView):
 class HighPriority(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = "high_tasks"
-    template_name = "high_tasks.html"
+    template_name = "english/high_tasks.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -75,7 +75,7 @@ class HighPriority(LoginRequiredMixin, ListView):
 class MediumPriority(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = "med_tasks"
-    template_name = "med_tasks.html"
+    template_name = "english/med_tasks.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -89,7 +89,7 @@ class MediumPriority(LoginRequiredMixin, ListView):
 class LowPriority(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = "low_tasks"
-    template_name = "low_tasks.html"
+    template_name = "english/low_tasks.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -103,7 +103,7 @@ class LowPriority(LoginRequiredMixin, ListView):
 class Completed_View(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = "finished_tasks"
-    template_name = "completed_tasks.html"
+    template_name = "english/completed_tasks.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -117,14 +117,14 @@ class Completed_View(LoginRequiredMixin, ListView):
 # Task Edit/Create/Delete Pages
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
-    template_name = "task_form.html"
+    template_name = "english/task_form.html"
     fields = ["title", "priority", "is_complete"]
     success_url = reverse_lazy("all_tasks")
 
 
 class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
-    template_name = "task_form.html"
+    template_name = "english/task_form.html"
     context_object_name = "task"
     success_url = reverse_lazy("all_tasks")
 
@@ -136,7 +136,7 @@ class TaskDelete(LoginRequiredMixin, DeleteView):
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     form_class = TaskForm
-    template_name = "task_form.html"
+    template_name = "english/task_form.html"
     success_url = reverse_lazy("all_tasks")
 
     def form_valid(self, form):
