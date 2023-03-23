@@ -29,7 +29,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             return redirect("home")
-    return render(request, "accounts/login.html")
+    return render(request, "registration/login.html")
 
 
 def logout_view(request):
@@ -91,10 +91,10 @@ def list_detail_all_view(request, list_id):
     tasks = Task.objects.filter(user=request.user, task_list=list_obj)
     if len(tasks) == 0:
         tasks = None
-    count = Task.objects.filter(
-        user=request.user, task_list=list_obj, is_complete=False
+    count = len(
+        Task.objects.filter(user=request.user, task_list=list_obj, is_complete=False)
     )
-    context = {"list": list_obj, "tasks": tasks, "count": count}
+    context = {"list_obj": list_obj, "tasks": tasks, "count": count}
     return render(request, "all_tasks.html", context)
 
 
@@ -104,10 +104,12 @@ def list_detail_low_view(request, list_id):
     tasks = Task.objects.filter(user=request.user, task_list=list_obj, priority="low")
     if len(tasks) == 0:
         tasks = None
-    count = Task.objects.filter(
-        user=request.user, task_list=list_obj, is_complete=False, priority="low"
+    count = len(
+        Task.objects.filter(
+            user=request.user, task_list=list_obj, is_complete=False, priority="low"
+        )
     )
-    context = {"list": list_obj, "tasks": tasks, "count": count}
+    context = {"list_obj": list_obj, "tasks": tasks, "count": count}
     return render(request, "low_tasks.html", context)
 
 
@@ -119,10 +121,12 @@ def list_detail_med_view(request, list_id):
     )
     if len(tasks) == 0:
         tasks = None
-    count = Task.objects.filter(
-        user=request.user, task_list=list_obj, is_complete=False, priority="medium"
+    count = len(
+        Task.objects.filter(
+            user=request.user, task_list=list_obj, is_complete=False, priority="medium"
+        )
     )
-    context = {"list": list_obj, "tasks": tasks, "count": count}
+    context = {"list_obj": list_obj, "tasks": tasks, "count": count}
     return render(request, "med_tasks.html", context)
 
 
@@ -132,10 +136,12 @@ def list_detail_high_view(request, list_id):
     tasks = Task.objects.filter(user=request.user, task_list=list_obj, priority="high")
     if len(tasks) == 0:
         tasks = None
-    count = Task.objects.filter(
-        user=request.user, task_list=list_obj, is_complete=False, priority="high"
+    count = len(
+        Task.objects.filter(
+            user=request.user, task_list=list_obj, is_complete=False, priority="high"
+        )
     )
-    context = {"list": list_obj, "tasks": tasks, "count": count}
+    context = {"list_obj": list_obj, "tasks": tasks, "count": count}
     return render(request, "high_tasks.html", context)
 
 
@@ -145,8 +151,10 @@ def list_detail_complete_view(request, list_id):
     tasks = Task.objects.filter(user=request.user, task_list=list_obj, is_complete=True)
     if len(tasks) == 0:
         tasks = None
-    count = Task.objects.filter(user=request.user, task_list=list_obj, is_complete=True)
-    context = {"list": list_obj, "tasks": tasks, "count": count}
+    count = len(
+        Task.objects.filter(user=request.user, task_list=list_obj, is_complete=True)
+    )
+    context = {"list_obj": list_obj, "tasks": tasks, "count": count}
     return render(request, "completed_tasks.html", context)
 
 
@@ -176,7 +184,7 @@ def delete_task_view(request, list_id, task_id):
     if request.method == "POST":
         task.delete()
         return redirect(f"/all_tasks_list/{list_obj.id}")
-    context = {"task": task, "list": list_obj}
+    context = {"task": task, "list_obj": list_obj}
     return render(request, "task-delete.html", context)
 
 
