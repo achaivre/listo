@@ -5,15 +5,15 @@
 
   {% if count is 0 %}
   <button class="button">
-    <a href="{% url 'create_task' %}">Create a Task</a>
+    <a href="{% url 'create_task' list_obj.id %}">Create a Task</a>
   </button>
-  {% else %} {% for task in med_tasks %}
+  {% else %} {% for task in tasks %}
   <ul>
-    <li>{{task}}   <a href="{% url 'update_task' task.id %}"
+    <li>{{task}}   <a href="{% url 'update_task' list_obj.id task.id %}"
         ><i class="fa fa-pencil"></i></a
       >
       /
-      <a href="{% url 'delete_task' task.id %}"><i class="fa fa-trash"></i></a>
+      <a href="{% url 'delete_task' list_obj.id task.id %}"><i class="fa fa-trash"></i></a>
     </p></li>
   </ul>
  
