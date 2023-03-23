@@ -1,16 +1,5 @@
 from django.urls import path
-from .views import (
-    LoginView_ToDo,
-    CreateUserPage,
-    AllTasks,
-    Completed_View,
-    TaskCreate,
-    TaskUpdate,
-    TaskDelete,
-    HighPriority,
-    LowPriority,
-    MediumPriority,
-)
+from .views import *
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
