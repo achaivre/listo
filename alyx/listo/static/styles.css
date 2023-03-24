@@ -1,10 +1,12 @@
 
 
 body {
-    margin: auto; 
+    margin: auto;
     width: 100%; 
     height: 100%;
-    background-color: #EEE5E9;}
+    background-color: #EEE5E9;
+    
+  }
 
 a {
     text-decoration: none;
@@ -13,14 +15,34 @@ a {
 .block {
     margin: auto; 
     width: 50%; 
-    margin-top: 10%; 
+    margin-top: 5%; 
+    float: none;
+    display: block;
+    
     }
 
 .header {
     width: 100%;
     background-color: #2B303A;
-    height: 100px;
-    margin-bottom: 2em;}
+    height: 200px;
+    margin-bottom: 1em;
+    border-radius: 0 0 85% 85% / 30%;
+   
+  } 
+
+ 
+    
+
+ footer {margin: auto;
+  width: 100%;
+  background-color: #2B303A;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  border-radius: 85% 85% 0 0  / 30%;
+} 
+
 
 .user {color: #D64933;}
 .count {color: #92DCE5;}
@@ -57,9 +79,10 @@ a {
     box-shadow: 10px 10px 5px rgb(74, 74, 74);
     color: azure;
     padding-left: 2em;
-    padding-right: 2em;}
+    padding-right: 2em;
+  }
 
-.all a:visited {color: #92DCE5;}
+.all a:visited {color:#92DCE5;}
 .all a:link {color: #92DCE5;}
 
 /* .button {
@@ -110,6 +133,10 @@ color: #2B303A;}
   color: #2B303A;
 }
 
+.button a:hover:after {opacity: 1;
+  color: #2B303A;
+}
+
 .button:hover {background-color: #92DCE5;
   color: #2B303A;
 
@@ -119,7 +146,7 @@ color: #2B303A;}
 
 .button a:hover {
     color: #2B303A;}
-.button a:active {color: #2B303A;}
+.button a:visited {color: #2B303A;}
 
 .log {  margin: auto; width: 50%;}
 
@@ -130,7 +157,7 @@ color: #2B303A;}
     padding: 16px;
     font-size: 20px;
     border: none;
-    cursor: pointer;
+  
   }
   
 

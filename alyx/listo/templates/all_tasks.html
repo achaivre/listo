@@ -1,4 +1,4 @@
-{% extends 'base.html' %}{% block content %}
+{% extends 'base.html' %}{% block content %} {% load static %}
 
 <div class="all">
   <h1>Tasks for <span class="user">{{list_obj.title}}</span></h1>
@@ -42,7 +42,7 @@
     <a href="{% url 'high_tasks' list_obj.id %}">High Tasks</a>
   </button>
   <button class="button">
-    <a href="{% url 'completed_tasks' list_obj.id%}">Completed Tasks</a>
+    <a href="{% url 'completed_tasks' list_obj.id%}">Completed</a>
   </button>
 </div>
 
