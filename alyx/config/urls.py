@@ -28,7 +28,7 @@ urlpatterns = [
     path("all_tasks_list/<int:list_id>/", list_detail_all_view, name="all_tasks"),
     path("low_tasks_list/<int:list_id>/", list_detail_low_view, name="low_tasks"),
     path("med_tasks_list/<int:list_id>/", list_detail_med_view, name="med_tasks"),
-    path("high_tasks_list/<int:list_id>/", list_detail_med_view, name="high_tasks"),
+    path("high_tasks_list/<int:list_id>/", list_detail_high_view, name="high_tasks"),
     path(
         "completed_tasks_list/<int:list_id>/",
         list_detail_complete_view,
@@ -45,4 +45,5 @@ urlpatterns = [
         delete_task_view,
         name="delete_task",
     ),
+    path("logout", logout_view, name="logout"),
 ]
