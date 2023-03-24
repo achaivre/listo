@@ -1,0 +1,27 @@
+{% extends 'base.html' %}{% block content %}
+
+<div class="all">
+  <h1>Hello <span class="user">{{request.user}}</span></h1>
+
+  {% if count is 0 %}
+  <button class="button">
+    <a href="{% url 'create_list' %}">Create a List</a>
+  </button>
+
+  {% else %} {% for list in lists %}
+  <p>
+    <a href="{% url "all_tasks" list.id %}">{{list}}</a>
+
+    <a href="{% url 'update_list' list.id %}"><i class="fa fa-pencil"></i></a>
+    /
+    <a href="{% url 'delete_list' list.id %}"><i class="fa fa-trash"></i></a>
+  </p>
+
+  {% endfor %}
+  <br /><button class="button">
+    <a href="{% url 'create_list'%}">Create a List</a>
+  </button>
+  {% endif %}
+</div>
+
+{% endblock content %}

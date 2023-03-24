@@ -1,0 +1,22 @@
+{% extends 'base.html' %}{% block content %}
+<div class="all">
+  <h1>Hello <span class="user">{{request.user}}</span></h1>
+  <h3>You have <span class="count">{{count}}</span> incomplete tasks.</h3>
+
+  {% if count is 0 %}
+  <button class="button">
+    <a href="{% url 'create_task' list_obj.id %}">Create a Task</a>
+  </button>
+  {% else %} {% for task in tasks %}
+  <ul>
+    <li>{{task}}   <a href="{% url 'update_task' list_obj.id task.id %}"
+        ><i class="fa fa-pencil"></i></a
+      >
+      /
+      <a href="{% url 'delete_task' list_obj.id task.id %}"><i class="fa fa-trash"></i></a>
+    </p></li>
+  </ul>
+ 
+  {% endfor %} {% endif %}
+</div>
+{% endblock content %}
