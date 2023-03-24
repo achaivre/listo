@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block content %} <br />
+<br /><br />
+
+<div class="log">
+  <div class="login">
+    <a href="{% url "login" %}" class="button">English</a>
+    <h1>Pagina De Acceso:</h1>
+    <form method="POST">
+      {% csrf_token %} {% for field in form %}
+      {{field.label}}
+      {{field}}{% endfor %}
+      <input class="button" type="submit" value="Registro" />
+    </form>
+    <p>No tienes una cuenta? <a href="{% url 'register' %}">Registrarte</a></p>
+  </div>
+</div>
+{% endblock content %}
+
+
+ 

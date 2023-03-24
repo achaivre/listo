@@ -69,7 +69,7 @@ def delete_list_view(request, list_id):
         list_obj.delete()
         return redirect("home")
     context = {"list": list_obj}
-    return render(request, "list_form.html", context)
+    return render(request, "list-delete.html", context)
 
 
 @login_required(login_url="login")
