@@ -7,7 +7,8 @@ body {
     background-color: #EEE5E9;}
 
 a {
-    text-decoration: none;}
+    text-decoration: none;
+    }
 
 .block {
     margin: auto; 
@@ -59,20 +60,66 @@ a {
     padding-right: 2em;}
 
 .all a:visited {color: #92DCE5;}
-.all a {color: #92DCE5;}
+.all a:link {color: #92DCE5;}
 
-.button {
-    width: fit-content;
-    background-color: #D64933;
-    color: #2B303A;}
+/* .button {
+  width: fit-content;
+  background-color: #D64933;
+  color: #92DCE5;}
 
 .button:hover {background-color: #92DCE5;
 color: #2B303A;}
 
-.button a {color: #2B303A;}
+.button a:link {color:#92DCE5;}
 
 .button a:hover {background-color: #92DCE5;
+  color: #2B303A;} */
+
+
+.button {
+    font-size: 10px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    padding: 13px 20px 13px;
+    outline: 0;
+    border: 1px solid black;
+    position: relative;
+    background-color: #D64933;
+    color: #2B303A;
+    width: 130px;
+    height: 40px;
+}
+
+.button:after {
+  position: absolute;
+  content: "";
+  top: 5px;
+  left: 6px;
+  width: 90%;
+  height: 70%;
+  border: 1px solid #000000;
+  opacity: 0;
+  transition: all 0.3s ease;
+  color: #2B303A;
+  pointer-events: none;
+
+
+}
+
+.button:hover:after {opacity: 1;
+  color: #2B303A;
+}
+
+.button:hover {background-color: #92DCE5;
+  color: #2B303A;
+
+}
+
+.button a:link {color:#2B303A}
+
+.button a:hover {
     color: #2B303A;}
+.button a:active {color: #2B303A;}
 
 .log {  margin: auto; width: 50%;}
 
