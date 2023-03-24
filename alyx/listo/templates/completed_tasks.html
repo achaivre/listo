@@ -1,4 +1,4 @@
-{% extends 'base.html' %}{% block content %}
+{% extends 'base.html' %}{% block content %} {% load static %}
 <div class="all">
   <h1>Hello <span class="user">{{request.user}}</span></h1>
   <h3>You have <span class="count">{{count}}</span> completed tasks.</h3>

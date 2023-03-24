@@ -1,4 +1,4 @@
-{% extends 'base.html' %}{% block content %}
+{% extends 'base.html' %}{% block content %} {% load static %}
 <div class="all">
   <h1>
     Hello
@@ -13,7 +13,7 @@
   {% else %} {% for task in tasks %}
   <ul>
     <li>
-      {{task}}
+      {{task}} &nbsp;
       <a href="{% url 'update_task' list_obj.id  task.id %}"
         ><i class="fa fa-pencil"></i
       ></a>

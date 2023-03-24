@@ -12,7 +12,7 @@
 
   {% else %} {% for task in tasks %}
   <p>
-    {{task}}
+    {{task}} &nbsp;
 
     <a href="{% url 'update_task' list_obj.id task.id %}"
       ><i class="fa fa-pencil"></i
