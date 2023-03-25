@@ -1,4 +1,4 @@
-{% extends 'base.html' %}{% block content %}
+{% extends 'base.html' %}{% block content %} {% load static %}
 <div class="all">
   <h1>
     Hello
@@ -13,7 +13,7 @@
   {% else %} {% for task in tasks %}
   <ul>
     <li>
-      {{task}}
+      {{task}} &nbsp;
       <a href="{% url 'update_task' list_obj.id  task.id %}"
         ><i class="fa fa-pencil"></i
       ></a>
@@ -25,5 +25,21 @@
   </ul>
 
   {% endfor %} {% endif %}
+</div>
+<br /><br />
+<div class="all">
+  <button class="button">
+    <a href="{% url 'all_tasks' list_obj.id%}">All Tasks</a>
+  </button>
+  <button class="button">
+    <a href="{% url 'low_tasks' list_obj.id%}">Low Tasks</a>
+  </button>
+  <button class="button">
+    <a href="{% url 'med_tasks' list_obj.id %}">Medium Tasks</a>
+  </button>
+
+  <button class="button">
+    <a href="{% url 'completed_tasks' list_obj.id%}">Completed</a>
+  </button>
 </div>
 {% endblock content %}

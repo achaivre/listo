@@ -1,7 +1,8 @@
-{% extends 'base.html' %}{% block content %}
+{% extends 'base.html' %}{% block content %} {% load static %}
 
 <div class="all">
-  <h1>Hello <span class="user">{{request.user}}</span></h1>
+  <h1>Tasks for <span class="user">{{list_obj.title}}</span></h1>
+
   <h3>You have <span class="count">{{count}}</span> incomplete tasks.</h3>
 
   {% if count is 0 %}
@@ -11,7 +12,7 @@
 
   {% else %} {% for task in tasks %}
   <p>
-    {{task}}
+    {{task}} &nbsp;
 
     <a href="{% url 'update_task' list_obj.id task.id %}"
       ><i class="fa fa-pencil"></i
@@ -27,6 +28,22 @@
     <a href="{% url 'create_task' list_obj.id %}">Create a Task</a>
   </button>
   {% endif %}
+</div>
+<br /><br />
+
+<div class="all">
+  <button class="button">
+    <a href="{% url 'low_tasks' list_obj.id%}">Low Tasks</a>
+  </button>
+  <button class="button">
+    <a href="{% url 'med_tasks' list_obj.id %}">Medium Tasks</a>
+  </button>
+  <button class="button">
+    <a href="{% url 'high_tasks' list_obj.id %}">High Tasks</a>
+  </button>
+  <button class="button">
+    <a href="{% url 'completed_tasks' list_obj.id%}">Completed</a>
+  </button>
 </div>
 
 {% endblock content %}

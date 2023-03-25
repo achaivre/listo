@@ -69,7 +69,7 @@ def delete_list_view(request, list_id):
         list_obj.delete()
         return redirect("home")
     context = {"list": list_obj}
-    return render(request, "list_form.html", context)
+    return render(request, "list-delete.html", context)
 
 
 @login_required(login_url="login")
@@ -193,11 +193,11 @@ def update_task_view(request, list_id, task_id):
     list_obj = List.objects.get(id=list_id)
     task = Task.objects.get(id=task_id)
     if request.method == "POST":
-        form = ListForm(request.POST, instance=task)
+        form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
             return redirect(f"/all_tasks_list/{list_obj.id}")
-    form = ListForm(instance=task)
+    form = TaskForm(instance=task)
     context = {"form": form}
     return render(request, "task_form.html", context)
 

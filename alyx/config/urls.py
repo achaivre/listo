@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 from listo.views import *
 
@@ -28,7 +29,7 @@ urlpatterns = [
     path("all_tasks_list/<int:list_id>/", list_detail_all_view, name="all_tasks"),
     path("low_tasks_list/<int:list_id>/", list_detail_low_view, name="low_tasks"),
     path("med_tasks_list/<int:list_id>/", list_detail_med_view, name="med_tasks"),
-    path("high_tasks_list/<int:list_id>/", list_detail_med_view, name="high_tasks"),
+    path("high_tasks_list/<int:list_id>/", list_detail_high_view, name="high_tasks"),
     path(
         "completed_tasks_list/<int:list_id>/",
         list_detail_complete_view,
@@ -45,6 +46,7 @@ urlpatterns = [
         delete_task_view,
         name="delete_task",
     ),
+<<<<<<< HEAD
     # spanish urls
     path("casa/", Sp_home_view, name="sp_home"),
     path("register", Sp_register_view, name="sp_register"),
@@ -74,4 +76,9 @@ urlpatterns = [
         Sp_delete_task_view,
         name="sp_delete_task",
     ),
+=======
+    path("logout", logout_view, name="logout"),
+>>>>>>> 14fc76c63c3957fe30afbcd0e62a445354b4e5dd
 ]
+
+urlpatterns += staticfiles_urlpatterns()

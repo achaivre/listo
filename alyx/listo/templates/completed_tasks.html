@@ -1,4 +1,4 @@
-{% extends 'base.html' %}{% block content %}
+{% extends 'base.html' %}{% block content %} {% load static %}
 <div class="all">
   <h1>Hello <span class="user">{{request.user}}</span></h1>
   <h3>You have <span class="count">{{count}}</span> completed tasks.</h3>
@@ -13,5 +13,20 @@
     <li>{{task}}</li>
   </ul>
   {% endfor %} {% endif %}
+</div>
+<br /><br />
+<div class="all">
+  <button class="button">
+    <a href="{% url 'all_tasks' list_obj.id%}">All Tasks</a>
+  </button>
+  <button class="button">
+    <a href="{% url 'low_tasks' list_obj.id%}">Low Tasks</a>
+  </button>
+  <button class="button">
+    <a href="{% url 'med_tasks' list_obj.id %}">Medium Tasks</a>
+  </button>
+  <button class="button">
+    <a href="{% url 'high_tasks' list_obj.id %}">High Tasks</a>
+  </button>
 </div>
 {% endblock content %}

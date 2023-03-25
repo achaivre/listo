@@ -1,4 +1,4 @@
-{% extends 'base.html' %}{% block content %}
+{% extends 'base.html' %}{% block content %} {% load static %}
 
 <div class="all">
   <h1>Hello <span class="user">{{request.user}}</span></h1>
@@ -10,7 +10,7 @@
 
   {% else %} {% for list in lists %}
   <p>
-    <a href="{% url "all_tasks" list.id %}">{{list}}</a>
+    <a href="{% url "all_tasks" list.id %}">{{list}}</a>&nbsp;
 
     <a href="{% url 'update_list' list.id %}"><i class="fa fa-pencil"></i></a>
     /
