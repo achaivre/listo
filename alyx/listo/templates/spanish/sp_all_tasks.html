@@ -1,7 +1,7 @@
-{% extends 'base.html' %}{% block content %}
+{% extends 'spanish/sp_base.html' %}{% block content %}
 
 <div class="all">
-  <h1>Hello <span class="user">{{request.user}}</span></h1>
+  <h1>Hola <span class="user">{{request.user}}</span></h1>
   <h3>You have <span class="count">{{count}}</span> incomplete tasks.</h3>
 
   {% if count is 0 %}
