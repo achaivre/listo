@@ -1,26 +1,29 @@
-{% extends 'base.html' %}{% block content %}
+{% extends 'spanish/sp_base.html' %}{% block content %} {% load static %}
+
+<a href="{% url "home" %}" class="edit-btn"><button class="button" id="lang_btn">English</button></a>
+
 
 <div class="all">
   <h1>Hola <span class="user">{{request.user}}</span></h1>
 
   {% if count is 0 %}
   <button class="button">
-    <a href="{% url 'create_list' %}">Crear Lista</a>
+    <a href="{% url 'sp_create_list' %}">Crear Lista</a>
   </button>
 
   {% else %} {% for list in lists %}
   <p>
-    <a href="{% url "all_tasks" list.id %}">{{list}}</a>
+    <a href="{% url "sp_all_tasks" list.id %}">{{list}}</a>
 
-    <a href="{% url 'update_list' list.id %}"><i class="fa fa-pencil"></i></a>
-    /
-    <a href="{% url 'delete_list' list.id %}"><i class="fa fa-trash"></i></a>
+    <a href="{% url 'sp_update_list' list.id %}"><i class="fa fa-pencil" id="edit_icon"></i></a>/<a href="{% url 'sp_delete_list' list.id %}"
+><i class="fa fa-trash" id="delete_icon"></i
+></a>
   </p>
 
   {% endfor %}
-  <br /><button class="button">
-    <a href="{% url 'create_list'%}">Crear Lista</a>
-  </button>
+  <br />
+    <a href="{% url 'sp_create_list'%}"><button class="button">Crear Lista
+  </button></a>
   {% endif %}
 </div>
 

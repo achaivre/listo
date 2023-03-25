@@ -1,15 +1,27 @@
-{% extends 'base.html' %}{% block content %}
+{% extends 'spanish/sp_base.html' %}{% block content %} {% load static %}
+<div><a href="{% url "register" %}" class="edit-btn"><button class="button" id="lang_btn">English</button></a></div>
+
+
 <div class="login">
   <form method="POST">
     {% csrf_token %}
-    <p><label>{{form.username.label}}:</label> {{form.username}}</p>
-
-    <p><label>{{form.password1.label}}:</label> {{form.password1}}</p>
-
-    <p><label>{{form.password2.label}}:</label> {{form.password2}}</p>
-    <p><input class="button" type="submit" value="Register" /></p>
+    <label for='username'>Usuario</label>
+    <input type="text" name="username" id='username' label="usuario" />
+    <p><label for='password1'>Contraseña</label>
+    <input type="password" name="password1" id='password1' label="contraseña" />
+    <p><label for='password2'>Confirmar contraseña</label>
+    <input type="password" name="password2" id='password2' label="contraseña" />
+    <p><button class="button">Registrar</button>
   </form>
-  <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+  <p>¿Ya tienes cuenta? <a href="{% url 'sp_login' %}">Acceso</a></p>
+
+  {% if form.errors %}
+   {% for field in form %}
+      {% for error in field.errors %}
+          {{ error|escape }}
+      {% endfor %}
+   {% endfor %}
+{% endif %}
 </div>
 
 {% endblock content %}

@@ -1,8 +1,8 @@
-
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
-    {% load static %}<link rel="icon" type="image/x-icon" href="{% static "images\o_blue.png"%}">
+    <link rel="icon" type="image/x-icon" href="{% static "images\o_blue.png"%}">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,11 +10,12 @@
     <link 
   href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
   rel="stylesheet"  type='text/css'>
-    <title>To Do List App</title>
+    <title>Listo</title>
   </head>
   <body>
+    
     <div class="header">
-       
+
       <div class="dropdown">
         {% if request.user.is_authenticated %}
        <button class="dropbtn">Menu</button>
@@ -26,11 +27,14 @@
     {% endif %}
    
         
-    </div></div></div> 
+    </div></div>
+    
+    <img id="logo" src="{% static  'images\listo_blue.png' %} "width=60px>
+  </div>
       <div class = "block">
         
         
     {% block content %}{% endblock content %}</div>
   </body>
-  <footer><div class="logo"><img src="{% static  'images\listo_blue.png' %} "><div></footer>
+  <footer><div class="ogo"><div></footer>
 </html>

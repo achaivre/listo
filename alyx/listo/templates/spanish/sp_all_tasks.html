@@ -1,30 +1,50 @@
-{% extends 'spanish/sp_base.html' %}{% block content %}
+{% extends 'spanish/sp_base.html' %}{% block content %} {% load static %}
 
+<nav>
+  <label for="touch"><span class="sort">Objetivos&nbsp;</span></label>
+  <input type="checkbox" id="touch">
+  <p class="slide">
+    <br><a href="{% url 'sp_low_tasks' list_obj.id%}">Prioridad Baja</a>
+    <br><a href="{% url 'sp_med_tasks' list_obj.id %}">Prioridad Media</a>
+    <br><a href="{% url 'sp_high_tasks' list_obj.id %}">Prioridad Alta</a>
+    <br><a href="{% url 'sp_completed_tasks' list_obj.id%}">Completo(s)</a>
+  </p>
+</nav>
+
+<div><a href="{% url "all_tasks" list_obj.id %}"><button class="button" id='lang_btn'>English</button></a></div>
 <div class="all">
   <h1>Hola <span class="user">{{request.user}}</span></h1>
-  <h3>You have <span class="count">{{count}}</span> incomplete tasks.</h3>
+  <h3>Tienes <span class="count">{{count}}</span> tarea(s) incompleta(s).</h3>
 
-  {% if count is 0 %}
-  <button class="button">
-    <a href="{% url 'create_task' %}">Create a Task</a>
-  </button>
+  {% if total is 0 %}
 
-  {% else %} {% for task in tasks %}
-  <p>
-    {{task}}
+  <a href="{% url 'all_tasks' list_obj.id %}"><button class="button" id='lang_btn'>English</button></a>
 
-    <a href="{% url 'update_task' task.id %}"
-      ><i class="fa fa-keyboard"></i>Edit</a
-    >
-    /
-    <a href="{% url 'delete_task' task.id %}"><i class="fa fa-trash"></i></a>
-  </p>
+  {% else %}
+{% for task in tasks %}
+{% if task.is_complete %}
+<p><span class="complete_task"><b>{{task}}</b>&nbsp;</span>
+<a href="{% url 'sp_update_task' list_obj.id task.id %}"><i class="fa fa-pencil" id="edit_icon"></i></a>/<a href="{% url 'sp_delete_task' list_obj.id task.id %}"
+      ><i class="fa fa-trash" id="delete_icon"></i
+    ></a>
+      </p>
+{% else %}
+<p>{{task}}:
+  {% if task.priority == 'low' %}baja{% endif %}
+  {% if task.priority == 'medium' %}media{% endif %}
+  {% if task.priority == 'high' %}alto{% endif %}
+  
+  <a href="{% url 'sp_update_task' list_obj.id task.id %}"><i class="fa fa-pencil" id="edit_icon"></i></a>/<a href="{% url 'sp_delete_task' list_obj.id task.id %}"
+><i class="fa fa-trash" id="delete_icon"></i
+></a></p>
+{% endif %}
+{% endfor %}
 
-  {% endfor %}
-  <br /><button class="button">
-    <a href="{% url 'create_task' %}">Create a Task</a>
-  </button>
+
+
   {% endif %}
+  <a href="{% url 'sp_create_task' list_obj.id%}"
+    ><button class="button">Crear Tarea</button></a
+  >
 </div>
-
 {% endblock content%}

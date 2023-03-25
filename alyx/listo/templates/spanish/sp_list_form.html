@@ -1,0 +1,13 @@
+{% extends 'spanish/sp_base.html' %} {% block content %} {% load static %}
+
+<div class="login">
+  <form method="POST" action="">
+    {% csrf_token %}
+
+    <label for="title">Objectivo</label>
+    <input type="text" name="title" id="title" />
+    <input class="button" type="submit" value="Entregar" />
+  </form>
+</div>
+
+{% endblock content %} v

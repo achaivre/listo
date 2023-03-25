@@ -1,49 +1,63 @@
 {% extends 'base.html' %}{% block content %} {% load static %}
 
+<nav>
+
+  <label for="touch"><span class="sort">Sort &nbsp;</span></label>               
+  <input type="checkbox" id="touch"> 
+
+  <p class="slide">
+    <br><a href="{% url 'low_tasks' list_obj.id%}">Low Tasks</a> 
+    <br><a href="{% url 'med_tasks' list_obj.id %}">Medium Tasks</a>
+    <br><a href="{% url 'high_tasks' list_obj.id %}">High Tasks</a>
+    <br><a href="{% url 'completed_tasks' list_obj.id%}">Completed</a>
+  </p>
+
+</nav> 
+
+<div><a href="{% url "sp_all_tasks" list_obj.id %}"><button class="button" id='lang_btn'>Español</button></a></div>
+
+
 <div class="all">
   <h1>Tasks for <span class="user">{{list_obj.title}}</span></h1>
 
-  <h3>You have <span class="count">{{count}}</span> incomplete tasks.</h3>
+  <h3>You have <span class="count">{{count}}</span> incomplete task(s).</h3>
 
-  {% if count is 0 %}
-  <button class="button">
-    <a href="{% url 'create_task' list_obj.id %}">Create a Task</a>
-  </button>
+  {% if total is 0 %}
+  
+    <a href="{% url 'create_task' list_obj.id %}"><button class="button">Create Task</button></a>
 
   {% else %} {% for task in tasks %}
+  {% if task.is_complete %}
   <p>
-    {{task}} &nbsp;
+    <span class="complete_task"><b>{{task}}</b></span>&nbsp;
+
+    <a href="{% url 'update_task' list_obj.id task.id %}"><i class="fa fa-pencil" id="edit_icon"></i></a>/<a href="{% url 'delete_task' list_obj.id task.id %}"
+><i class="fa fa-trash" id="delete_icon"></i
+></a>
+  {% else %}
+  <p>
+    <b>{{task}}</b>: {{task.priority}} &nbsp;
 
     <a href="{% url 'update_task' list_obj.id task.id %}"
-      ><i class="fa fa-pencil"></i
-    ></a>
-    /
+      ><i class="fa fa-pencil" id="edit_icon"></i
+    ></a>/
     <a href="{% url 'delete_task' list_obj.id task.id %}"
-      ><i class="fa fa-trash"></i
+      ><i class="fa fa-trash" id="delete_icon"></i
     ></a>
   </p>
+  {% endif %}
 
   {% endfor %}
-  <br /><button class="button">
-    <a href="{% url 'create_task' list_obj.id %}">Create a Task</a>
-  </button>
+  <p>
+    <a href="{% url 'create_task' list_obj.id %}"><button class="button">Create Task</button></a>
+  
   {% endif %}
 </div>
 <br /><br />
 
-<div class="all">
-  <button class="button">
-    <a href="{% url 'low_tasks' list_obj.id%}">Low Tasks</a>
-  </button>
-  <button class="button">
-    <a href="{% url 'med_tasks' list_obj.id %}">Medium Tasks</a>
-  </button>
-  <button class="button">
-    <a href="{% url 'high_tasks' list_obj.id %}">High Tasks</a>
-  </button>
-  <button class="button">
-    <a href="{% url 'completed_tasks' list_obj.id%}">Completed</a>
-  </button>
-</div>
+
+
+
+
 
 {% endblock content %}

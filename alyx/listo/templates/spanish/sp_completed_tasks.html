@@ -1,16 +1,31 @@
-{% extends 'base.html' %}{% block content %}
+{% extends 'spanish/sp_base.html' %}{% block content %}
+
+<nav>
+  <label for="touch"><span class="sort">Objetivos&nbsp;</span></label>
+  <input type="checkbox" id="touch">
+  <p class="slide">
+    <br><a href="{% url 'sp_all_tasks' list_obj.id%}">Todas las Tareas</a>
+    <br><a href="{% url 'sp_low_tasks' list_obj.id%}">Prioridad Baja</a>
+    <br><a href="{% url 'sp_med_tasks' list_obj.id %}">Prioridad Media</a>
+    <br><a href="{% url 'sp_high_tasks' list_obj.id %}">Prioridad Alta</a>
+  </p>
+</nav>
+
+<div><a href="{% url "completed_tasks" list_obj.id %}" class="edit-btn"><button class="button" id="lang_btn">English</button></a></div>
+
 <div class="all">
-  <h1>Hello <span class="user">{{request.user}}</span></h1>
-  <h3>You have <span class="count">{{count}}</span> completed tasks.</h3>
+  <h1>Hola <span class="user">{{request.user}}</span></h1>
+  <h3>Tienes <span class="count">{{count}}</span> tarea(s) completa(s).</h3>
 
-  {% if count is 0 %}
-  <button class="button">
-    <a href="{% url 'create_task' %}">Create a Task</a>
-  </button>
+  {% if total is 0 %}
 
-  {% else %} {% for task in finished_tasks %}
+    <a href="{% url 'sp_create_task' list_obj.id %}"> <button class="button">Crear Tarea</button></a>
+
+
+
+  {% else %} {% for task in tasks %}
   <ul>
-    <li>{{task}}</li>
+    <li><span class="complete_task">{{task}}</li></span>
   </ul>
   {% endfor %} {% endif %}
 </div>

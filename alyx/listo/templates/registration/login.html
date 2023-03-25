@@ -1,8 +1,9 @@
 {% extends 'base.html' %} {% block content %} {% load static %}
+<a href="{% url "sp_login" %}" class="edit-btn"><button class="button" id="lang_btn">Español</button></a>
 <div class="log">
   <div class="login">
     <h1>Login Page:</h1>
-    <div><button><a href="{% url "registration/sp_home" %}" class="edit-btn">Español</a></button></div>
+    
     <form method="POST">
       {% csrf_token %} {{form.as_p}}
       <input class="button" type="submit" value="Login" />

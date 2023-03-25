@@ -17,6 +17,21 @@ class ListForm(forms.ModelForm):
 
 
 class TaskForm(forms.ModelForm):
+    is_complete = forms.BooleanField(label="Complete", required=False)
+
+    class Meta:
+        model = Task
+        fields = ["title", "priority", "is_complete"]
+
+
+class Sp_TaskForm(forms.ModelForm):
+    PRIORITY_CHOICES = (("high", "ALTO"), ("medium", "MEDIA"), ("low", "BAJA"))
+    priority = forms.ChoiceField(
+        choices=PRIORITY_CHOICES, required=True, label="Prioridad"
+    )
+    title = forms.CharField(max_length=50, required=True, label="Nombre")
+    is_complete = forms.BooleanField(label="Completo", required=False)
+
     class Meta:
         model = Task
         fields = ["title", "priority", "is_complete"]

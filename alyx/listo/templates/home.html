@@ -1,5 +1,8 @@
 {% extends 'base.html' %}{% block content %} {% load static %}
 
+<div><a href="{% url "sp_home" %}" class="edit-btn"><button class="button" id="lang_btn">Español</button></a></div>
+
+
 <div class="all">
   <h1>Hello <span class="user">{{request.user}}</span></h1>
 
@@ -12,15 +15,15 @@
   <p>
     <a href="{% url "all_tasks" list.id %}">{{list}}</a>&nbsp;
 
-    <a href="{% url 'update_list' list.id %}"><i class="fa fa-pencil"></i></a>
+    <a href="{% url 'update_list' list.id %}"><i class="fa fa-pencil" id="edit_icon"></i></a>
     /
-    <a href="{% url 'delete_list' list.id %}"><i class="fa fa-trash"></i></a>
+    <a href="{% url 'delete_list' list.id %}"><i class="fa fa-trash" id="delete_icon"></i></a>
   </p>
 
   {% endfor %}
-  <br /><button class="button">
-    <a href="{% url 'create_list'%}">Create a List</a>
-  </button>
+  <br />
+    <a href="{% url 'create_list'%}"><button class="button">Create a List</button></a>
+  
   {% endif %}
 </div>
 

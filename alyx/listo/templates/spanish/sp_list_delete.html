@@ -1,0 +1,9 @@
+{% extends 'spanish/sp_base.html' %} {% block content %} {% load static %}
+
+<form method="POST">
+  {% csrf_token %}
+  <h2>Quieres borrar esta lista?</h2>
+  <button type="submit" class="button">Confirmar</button>
+</form>
+
+{% endblock content %}
