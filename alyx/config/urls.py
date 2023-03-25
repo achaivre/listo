@@ -45,4 +45,33 @@ urlpatterns = [
         delete_task_view,
         name="delete_task",
     ),
+    # spanish urls
+    path("casa/", Sp_home_view, name="sp_home"),
+    path("register", Sp_register_view, name="sp_register"),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("create_list/", Sp_create_list_view, name="sp_create_list"),
+    path("update_list/<int:list_id>/", Sp_update_list_view, name="sp_update_list"),
+    path("delete_list/<int:list_id>/", Sp_delete_list_view, name="sp_delete_list"),
+    path("all_tasks_list/<int:list_id>/", Sp_list_detail_all_view, name="sp_all_tasks"),
+    path("low_tasks_list/<int:list_id>/", Sp_list_detail_low_view, name="sp_low_tasks"),
+    path("med_tasks_list/<int:list_id>/", Sp_list_detail_med_view, name="sp_med_tasks"),
+    path(
+        "high_tasks_list/<int:list_id>/", Sp_list_detail_med_view, name="sp_high_tasks"
+    ),
+    path(
+        "completed_tasks_list/<int:list_id>/",
+        Sp_list_detail_complete_view,
+        name="sp_completed_tasks",
+    ),
+    path("task_create/<int:list_id>/", Sp_create_task_view, name="sp_create_task"),
+    path(
+        "task_update/<int:list_id>/<int:task_id>/",
+        Sp_update_task_view,
+        name="sp_update_task",
+    ),
+    path(
+        "task_delete/<int:list_id>/<int:task_id>/",
+        Sp_delete_task_view,
+        name="sp_delete_task",
+    ),
 ]
