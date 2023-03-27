@@ -18,7 +18,7 @@
         {% if request.user.is_authenticated %}
        <button class="dropbtn">Menú</button>
         <div class="dropcontent">
-          <a href="{% url "sp_home" %}">Página de inicio</a>
+          <a href="{% url "sp_home" %}">Listas</a>
           <a href="{% url "sp_logout" %}">Salir</a>
           
         {% else %}

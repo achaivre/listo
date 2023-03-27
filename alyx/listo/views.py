@@ -308,7 +308,7 @@ def sp_update_list_view(request, list_id):
         form = ListForm(request.POST, instance=list_obj)
         if form.is_valid():
             form.save()
-            return redirect("home")
+            return redirect("sp_home")
     form = ListForm(instance=list_obj)
     context = {"form": form}
     return render(request, "spanish/sp_list_form.html", context)
