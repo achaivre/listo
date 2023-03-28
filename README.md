@@ -1,22 +1,9 @@
-This is the readme.
+README
 
-3. error messages
+Our app, listo, allows the user to make multiple lists and then create tasks inside of the list.
 
-custom error messages
-sharable lists
-exporting lists
-calendars
-time blocking
-repeatable tasks
+These lists and tasks can be updated, deleted and marked complete.
 
-alyx backend
-ashley front end
-Julia/Eddie spanish translating full stack
-Anthony Quality Assurance
+Each user only sees what lists and tasks that they create themselves and can sort tasks in a list by their priority.
 
-Anthony Intro
-Alyx inspiration
-Eddie For everyone
-Ashley Flow chart/pseudo Code
-Julia Wish List
-Anthony Ends by asking who wants to use our app.
+A user can also switch to spanish language on our pages for our spanish users.
